@@ -11,8 +11,9 @@ namespace SportsStore
 
 		public static void SeedDatabase(DataContext context)
 		{
-			context.Database.Migrate();
-			if (context.Products.Count() == 0)
+			if (context.Database.GetMigrations().Count() > 0
+					&& context.Database.GetPendingMigrations().Count() == 0
+					&& context.Products.Count() == 0)
 			{
 				var s1 = new Supplier
 				{
@@ -42,82 +43,82 @@ namespace SportsStore
 						Price = 275,
 						Supplier = s1,
 						Ratings = new List<Rating> {
-							 new Rating { Stars = 4 }, new Rating { Stars = 3 }}
+							new Rating { Stars = 4 }, new Rating { Stars = 3 }}
 					},
-					 new Product
-					 {
-						 Name = "Lifejacket",
-						 Description = "Protective and fashionable",
-						 Category = "Watersports",
-						 Price = 48.95m,
-						 Supplier = s1,
-						 Ratings = new List<Rating> {
-							 new Rating { Stars = 2 }, new Rating { Stars = 5 }}
-					 },
-					 new Product
-					 {
-						 Name = "Soccer Ball",
-						 Description = "FIFA-approved size and weight",
-						 Category = "Soccer",
-						 Price = 19.50m,
-						 Supplier = s2,
-						 Ratings = new List<Rating> {
-							 new Rating { Stars = 1 }, new Rating { Stars = 3 }}
-					 },
-					 new Product
-					 {
-						 Name = "Corner Flags",
-						 Description = "Give your pitch a professional touch",
-						 Category = "Soccer",
-						 Price = 34.95m,
-						 Supplier = s2,
-						 Ratings = new List<Rating> { new Rating { Stars = 3 } }
-					 },
-					 new Product
-					 {
-						 Name = "Stadium",
-						 Description = "Flat-packed 35,000-seat stadium",
-						 Category = "Soccer",
-						 Price = 79500,
-						 Supplier = s2,
-						 Ratings = new List<Rating> { new Rating { Stars = 1 },
-							 new Rating { Stars = 4 }, new Rating { Stars = 3 }}
-					 },
-					 new Product
-					 {
-						 Name = "Thinking Cap",
-						 Description = "Improve brain efficiency by 75%",
-						 Category = "Chess",
-						 Price = 16,
-						 Supplier = s3,
-						 Ratings = new List<Rating> { new Rating { Stars = 5 },
-							 new Rating { Stars = 4 }}
-					 },
-					 new Product
-					 {
-						 Name = "Unsteady Chair",
-						 Description = "Secretly give your opponent a disadvantage",
-						 Category = "Chess",
-						 Price = 29.95m,
-						 Supplier = s3,
-						 Ratings = new List<Rating> { new Rating { Stars = 3 } }
-					 },
-					 new Product
-					 {
-						 Name = "Human Chess Board",
-						 Description = "A fun game for the family",
-						 Category = "Chess",
-						 Price = 75,
-						 Supplier = s3
-					 },
-					 new Product
-					 {
-						 Name = "Bling-Bling King",
-						 Description = "Gold-plated, diamond-studded King",
-						 Category = "Chess",
-						 Price = 1200,
-						 Supplier = s3
-					 });
+					new Product
+					{
+						Name = "Lifejacket",
+						Description = "Protective and fashionable",
+						Category = "Watersports",
+						Price = 48.95m,
+						Supplier = s1,
+						Ratings = new List<Rating> {
+							new Rating { Stars = 2 }, new Rating { Stars = 5 }}
+					},
+					new Product
+					{
+						Name = "Soccer Ball",
+						Description = "FIFA-approved size and weight",
+						Category = "Soccer",
+						Price = 19.50m,
+						Supplier = s2,
+						Ratings = new List<Rating> {
+							new Rating { Stars = 1 }, new Rating { Stars = 3 }}
+					},
+					new Product
+					{
+						Name = "Corner Flags",
+						Description = "Give your pitch a professional touch",
+						Category = "Soccer",
+						Price = 34.95m,
+						Supplier = s2,
+						Ratings = new List<Rating> { new Rating { Stars = 3 } }
+					},
+					new Product
+					{
+						Name = "Stadium",
+						Description = "Flat-packed 35,000-seat stadium",
+						Category = "Soccer",
+						Price = 79500,
+						Supplier = s2,
+						Ratings = new List<Rating> { new Rating { Stars = 1 },
+							new Rating { Stars = 4 }, new Rating { Stars = 3 }}
+					},
+					new Product
+					{
+						Name = "Thinking Cap",
+						Description = "Improve brain efficiency by 75%",
+						Category = "Chess",
+						Price = 16,
+						Supplier = s3,
+						Ratings = new List<Rating> { new Rating { Stars = 5 },
+							new Rating { Stars = 4 }}
+					},
+					new Product
+					{
+						Name = "Unsteady Chair",
+						Description = "Secretly give your opponent a disadvantage",
+						Category = "Chess",
+						Price = 29.95m,
+						Supplier = s3,
+						Ratings = new List<Rating> { new Rating { Stars = 3 } }
+					},
+					new Product
+					{
+						Name = "Human Chess Board",
+						Description = "A fun game for the family",
+						Category = "Chess",
+						Price = 75,
+						Supplier = s3
+					},
+					new Product
+					{
+						Name = "Bling-Bling King",
+						Description = "Gold-plated, diamond-studded King",
+						Category = "Chess",
+						Price = 1200,
+						Supplier = s3
+					});
 				context.SaveChanges();
 			}
 		}
